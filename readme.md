@@ -455,7 +455,12 @@ http://joeyespo.com
 
 #### Fenced code blocks
 
+```ruby
+  # ruby
+puts "ruby"
 ```
+
+```js
 function test() {
   console.log("notice the blank line before this function?");
 }
