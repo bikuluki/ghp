@@ -22,6 +22,12 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
   - jemoji
+  - jekyll-titles-from-headings
+
+readme_index:
+  enabled:          true
+  remove_originals: true
+  with_frontmatter: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
