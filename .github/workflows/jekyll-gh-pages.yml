@@ -27,6 +27,7 @@ jobs:
 
       - name: copy GHP configs
         run: | 
+          echo 'Running bikuluki ghp.yml'
           echo "--- Current hash: $(git rev-parse HEAD)"
           if [[ "$(basename $(pwd))" != "ghp" ]]; then
             git config user.name 'github'; git config user.email 'noreply@github.com'
