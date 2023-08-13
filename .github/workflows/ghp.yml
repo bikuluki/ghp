@@ -33,9 +33,11 @@ jobs:
             git config user.name 'github-actions'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             echo "- base_pwd: $(basename $(pwd))"; rm -rf ghp 
 
-            curl https://raw.githubusercontent.com/bikuluki/ghp/main/Gemfile     > Gemfile
-            curl https://raw.githubusercontent.com/bikuluki/ghp/main/_config.yml > _config.yml
-            curl https://raw.githubusercontent.com/bikuluki/ghp/main/favicon.ico > favicon.ico
+            wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
+            ghpArr=( "Gemfile" "_config.yml" "favicon.ico" "_includes" "_layouts" )
+            for item in ${ghpArr[@]}; do 
+              if [[ -d "ghp/$item" ]]; then cp -urf ghp/$item . && echo "- Copied $item"; fi
+            done
             if [[ -n $(git status --short) ]]; then 
               echo "- git status: $(git status -s)"
               git add .
@@ -44,11 +46,6 @@ jobs:
               echo "--- Updated hash: $(git rev-parse HEAD)"
             fi
 
-            wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
-            ghpArr=( "_includes" "_layouts" )
-            for item in ${ghpArr[@]}; do 
-              if [[ -d "ghp/$item" ]]; then cp -urf ghp/$item . && echo "- Copied $item"; fi
-            done
           fi
 
       - name: Setup Pages
