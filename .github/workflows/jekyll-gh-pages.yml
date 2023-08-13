@@ -42,14 +42,14 @@ jobs:
             fi
 
             bikuluki='https://raw.githubusercontent.com/bikuluki/ghp/main/'
-            echo "curl: $(curl $bikuluki/.github/workflows/ghp.yml)"
+            curl $bikuluki/.github/workflows/ghp.yml
             curl $bikuluki/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
             curl $bikuluki/favicon.ico > favicon.ico
             curl $bikuluki/Gemfile     > Gemfile
             curl $bikuluki/_config.yml > _config.yml
             if [[ -n $(git status --short) ]]; then 
               echo "- git status: $(git status -s)"
-              git add .github
+              git add .
               git commit -am 'Adding ghp.yml'
               echo '- Added ghp.yml'
               git push -u origin main
