@@ -1,23 +1,20 @@
 # title: Your awesome title
 # email: your-email@example.com
-#baseurl: "" # the subpath of your site, e.g. /blog
-#url: "" # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: jekyllrb
-#github_username:  jekyll
-repository: bikuluki/ghp
-
-#remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+# baseurl: "" # the subpath of your site, e.g. /blog
+# url: "" # the base hostname & protocol for your site, e.g. http://example.com
+# twitter_username: jekyllrb
+# github_username:  jekyll
+# remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 
 # Build settings
 markdown: kramdown
-plugins:
-  - jekyll-feed
 
-GFM:
+kramdown:
   input: GFM
   toc:
     min_level: 2
     max_level: 5
+
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
