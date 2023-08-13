@@ -21,13 +21,7 @@ GFM:
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
-  - jekyll-titles-from-headings
   - jemoji
-
-readme_index:
-  enabled:          true
-  remove_originals: false
-  with_frontmatter: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
