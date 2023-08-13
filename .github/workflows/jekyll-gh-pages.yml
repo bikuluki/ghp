@@ -1,88 +1,16 @@
-name: Jekyll with GitHub Pages dependencies preinstalled
+name: GHP Deploy
 
 on:
+  push:
+  schedule:
+    - cron: '37 1,5 * * *'
   workflow_dispatch:
-  workflow_call:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: write
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
-  # Build job
-  build:
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: copy GHP configs
-        run: | 
-          echo "--- Current hash: $(git rev-parse HEAD)"
-          if [[ "$(basename $(pwd))" != "ghp" ]]; then
-            echo 'Running bikuluki ghp.yml'
-            git config user.name 'github-actions'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            echo "- base_pwd: $(basename $(pwd))"; rm -rf ghp 
-
-            if [[ ! -d ".github/workflows" ]]; then
-              mkdir ".github/workflows"
-              echo "- Created .github/workflows"
-            elif [[ -f ".github/workflows/jekyll-gh-pages.yml" ]]; then
-              echo '- deleting jekyll-gh-pages.yml'
-              rm -f .github/workflows/jekyll-gh-pages.yml
-            fi
-
-            bikuluki='https://raw.githubusercontent.com/bikuluki/ghp/main/'
-            echo $bikuluki/.github/workflows/ghp.yml
-            curl $bikuluki/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
-            curl $bikuluki/favicon.ico > favicon.ico
-            curl $bikuluki/Gemfile     > Gemfile
-            curl $bikuluki/_config.yml > _config.yml
-            if [[ -n $(git status --short) ]]; then 
-              echo "- git status: $(git status -s)"
-              git add .
-              git commit -am 'Adding ghp.yml'
-              echo '- Added ghp.yml'
-              git push -u origin main
-              echo "--- Updated hash: $(git rev-parse HEAD)"
-            fi
-
-            wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
-            ghpArr=( "_includes" "_layouts" )
-            for item in ${ghpArr[@]}; do 
-              if [[ -d "ghp/$item" ]]; then cp -urf ghp/$item . && echo "- Copied $item"; fi
-            done
-          fi
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-            
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-
-  # Deployment job
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+    uses: bikuluki/ghp/.github/workflows/ghp.yml@main
