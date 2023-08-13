@@ -29,8 +29,7 @@ jobs:
         run: | 
           echo "--- Current hash: $(git rev-parse HEAD)"
           if [[ "$(basename $(pwd))" != "ghp" ]]; then
-            git config user.name 'github'
-            git config user.email 'noreply@github.com'
+            git config user.name 'github'; git config user.email 'noreply@github.com'
             echo "base_pwd: $(basename $(pwd))"
             rm -rf ghp 
             wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
