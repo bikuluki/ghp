@@ -59,7 +59,7 @@ jobs:
             fi
             ghpArr=( "_includes" "_layouts" "favicon.ico" )
             for item in ${ghpArr[@]}; do 
-              cp -urf ghp/$item . && echo "- Copied $item"
+              if [[ -f "ghp/$item" ]]; then cp -urf ghp/$item . && echo "- Copied $item"; fi
             done
           fi
 
