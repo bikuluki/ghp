@@ -40,13 +40,9 @@ jobs:
                 rm -rf $item
                 cp -r ghp/$item .
                 echo "deleted and copied $item"
-              else
-                echo "ghp/$item not found"
-              fi
+              else echo "ghp/$item not found"; fi
             done
-            if [[ -n $(git status --short) ]]; then
-              echo "--- Updated ghp"
-            fi
+            if [[ -n $(git status --short) ]]; then echo "--- Updated ghp"; fi
             echo "--- Updated hash: $(git rev-parse HEAD)"
           fi
 
