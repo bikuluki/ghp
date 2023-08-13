@@ -42,20 +42,18 @@ jobs:
             fi
 
             bikuluki='https://raw.githubusercontent.com/bikuluki/ghp/main/'
-            if [[ ! -f '.github/workflows/ghp.yml' ]]; then
-              echo "curl: $(curl $bikuluki/.github/workflows/ghp.yml)"
-              curl $bikuluki/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
-              curl $bikuluki/favicon.ico > favicon.ico
-              curl $bikuluki/Gemfile     > Gemfile
-              curl $bikuluki/_config.yml > _config.yml
-              if [[ -n $(git status --short) ]]; then 
-                echo "- git status: $(git status -s)"
-                git add .github
-                git commit -am 'Adding ghp.yml'
-                echo '- Added ghp.yml'
-                git push
-                echo "--- Updated hash: $(git rev-parse HEAD)"
-              fi
+            echo "curl: $(curl $bikuluki/.github/workflows/ghp.yml)"
+            curl $bikuluki/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
+            curl $bikuluki/favicon.ico > favicon.ico
+            curl $bikuluki/Gemfile     > Gemfile
+            curl $bikuluki/_config.yml > _config.yml
+            if [[ -n $(git status --short) ]]; then 
+              echo "- git status: $(git status -s)"
+              git add .github
+              git commit -am 'Adding ghp.yml'
+              echo '- Added ghp.yml'
+              git push
+              echo "--- Updated hash: $(git rev-parse HEAD)"
             fi
 
             wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
