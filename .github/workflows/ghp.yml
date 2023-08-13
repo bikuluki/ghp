@@ -33,19 +33,9 @@ jobs:
             git config user.name 'github-actions'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             echo "- base_pwd: $(basename $(pwd))"; rm -rf ghp 
 
-            if [[ ! -d ".github/workflows" ]]; then
-              mkdir ".github/workflows"
-              echo "- Created .github/workflows"
-            elif [[ -f ".github/workflows/jekyll-gh-pages.yml" ]]; then
-              echo '- deleting jekyll-gh-pages.yml'
-              rm -f .github/workflows/jekyll-gh-pages.yml
-            fi
-
-            bikuluki='https://raw.githubusercontent.com/bikuluki/ghp/main/'
-            curl "$bikuluki/Gemfile" 
-            curl "$bikuluki/Gemfile"     > Gemfile
-            curl "$bikuluki/_config.yml" > _config.yml
-            curl "$bikuluki/favicon.ico" > favicon.ico
+            curl https://raw.githubusercontent.com/bikuluki/ghp/main/Gemfile     > Gemfile
+            curl https://raw.githubusercontent.com/bikuluki/ghp/main/_config.yml > _config.yml
+            curl https://raw.githubusercontent.com/bikuluki/ghp/main/favicon.ico > favicon.ico
             if [[ -n $(git status --short) ]]; then 
               echo "- git status: $(git status -s)"
               git add .
