@@ -43,6 +43,7 @@ jobs:
 
             bikuluki='https://raw.githubusercontent.com/bikuluki/ghp/main/'
             if [[ ! -f '.github/workflows/ghp.yml' ]]; then
+              echo "curl: $(curl $bikuluki/.github/workflows/ghp.yml)"
               curl $bikuluki/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
               curl $bikuluki/favicon.ico > favicon.ico
               curl $bikuluki/Gemfile     > Gemfile
