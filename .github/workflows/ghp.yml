@@ -36,7 +36,7 @@ jobs:
             wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
             ghpArr=( "Gemfile" "_config.yml" "favicon.ico" "_includes" "_layouts" )
             for item in ${ghpArr[@]}; do 
-              cp -urf ghp/$item . && echo "* Copied $item \n"
+              cp -r ghp/$item . && echo "* Copied $item \n"
             done
             rm -rf ghp && echo "* rm -rf ghp \n"
             if [[ -n $(git status --short) ]]; then 
