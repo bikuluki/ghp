@@ -30,7 +30,7 @@ jobs:
           echo "--- Current hash: $(git rev-parse HEAD)"
           if [[ "$(basename $(pwd))" != "ghp" ]]; then
             echo 'Running bikuluki ghp.yml'
-            git config user.name 'github'; git config user.email 'noreply@github.com'
+            git config user.name 'github-actions'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             echo "- base_pwd: $(basename $(pwd))"; rm -rf ghp 
 
             if [[ ! -d ".github/workflows" ]]; then
