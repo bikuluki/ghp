@@ -2,4 +2,9 @@
 title: GHP Template
 ---
 
-{% include gallery.html folder='/album' %}
+
+```
+cp ../ghp/readme.md .
+mkdir -p .github/workflows
+cp ../.github/workflows/ghp.yml .github/workflows
+```
