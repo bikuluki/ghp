@@ -40,25 +40,20 @@ jobs:
               rm -f .github/workflows/jekyll-gh-pages.yml
             fi
 
+            bikuluki='https://raw.githubusercontent.com/bikuluki/ghp/main/'
             if [[ ! -f '.github/workflows/ghp.yml' ]]; then
-              curl https://raw.githubusercontent.com/bikuluki/ghp/main/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
-              git add .github
-              git commit -am 'Adding ghp.yml'
-              echo '- Added ghp.yml'
-            fi
-
-            ghpArr=( "Gemfile" "_config.yml" "favicon.ico" )
-            for item in ${ghpArr[@]}; do 
-              if [[ -f "ghp/$item" ]]; then
-                echo "- Updating ghp/$item"
-                cp -uf ghp/$item . && git commit $item -m "$item" && echo "- Updated $item"
+              curl $bikuluki/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
+              curl $bikuluki/favicon.ico > favicon.ico
+              curl $bikuluki/Gemfile     > Gemfile
+              curl $bikuluki/_config.yml > _config.yml
+              if [[ -n $(git status --short) ]]; then 
+                echo "- git status: $(git status -s)"
+                git add .github
+                git commit -am 'Adding ghp.yml'
+                echo '- Added ghp.yml'
+                git push
+                echo "--- Updated hash: $(git rev-parse HEAD)"
               fi
-            done
-
-            if [[ -n $(git status --short) ]]; then 
-              echo "- Git: $(git status -s)"
-              git push
-              echo "--- Updated hash: $(git rev-parse HEAD)"
             fi
 
             wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
