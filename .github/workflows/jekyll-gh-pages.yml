@@ -42,7 +42,7 @@ jobs:
             fi
 
             bikuluki='https://raw.githubusercontent.com/bikuluki/ghp/main/'
-            curl $bikuluki/.github/workflows/ghp.yml
+            echo $bikuluki/.github/workflows/ghp.yml
             curl $bikuluki/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
             curl $bikuluki/favicon.ico > favicon.ico
             curl $bikuluki/Gemfile     > Gemfile
