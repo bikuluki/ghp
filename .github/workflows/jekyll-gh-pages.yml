@@ -52,7 +52,7 @@ jobs:
               git add .github
               git commit -am 'Adding ghp.yml'
               echo '- Added ghp.yml'
-              git push
+              git push -u origin main
               echo "--- Updated hash: $(git rev-parse HEAD)"
             fi
 
