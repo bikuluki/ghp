@@ -1,7 +1,4 @@
----
-title: GHP Template
----
-
+# GHP Template
 
 ```
 cp ../ghp/readme.md .
