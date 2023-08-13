@@ -30,17 +30,32 @@ jobs:
           echo "--- Current hash: $(git rev-parse HEAD)"
           if [[ "$(basename $(pwd))" != "ghp" ]]; then
             git config user.name 'github'; git config user.email 'noreply@github.com'
-            echo "base_pwd: $(basename $(pwd))"; rm -rf ghp 
+            echo "- base_pwd: $(basename $(pwd))"; rm -rf ghp 
             wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
             ghpArr=( "Gemfile" "_config.yml" "_includes" "_layouts" "favicon.ico" )
             for item in ${ghpArr[@]}; do 
               if [[ -f ghp/$item ]]; then
                 rm -rf $item
                 cp -r ghp/$item .
-                echo "deleted and copied $item"
-              else echo "ghp/$item not found"; fi
+                echo "- deleted and copied $item"
+              else echo "- ghp/$item not found"; fi
             done
             if [[ -n $(git status --short) ]]; then echo "--- Updated ghp"; fi
+            if [[ ! -d ".github/workflows" ]]; then
+              mkdir ".github/workflows"
+              echo "- Created .github/workflows"
+            elif [[ -f ".github/workflows/jekyll-gh-pages.yml" ]]; then
+              echo '- deleting jekyll-gh-pages.yml'
+              rm -f .github/workflows/jekyll-gh-pages.yml
+            fi
+            if [[ ! -f '.github/workflows/ghp.yml' ]]; then
+              cp ghp/.github/workflows/ghp.yml .github/workflows
+              git add .github
+              git commit -am 'Adding ghp.yml'
+              git push
+              echo '- Added ghp.yml'
+            fi
+
             echo "--- Updated hash: $(git rev-parse HEAD)"
           fi
 
