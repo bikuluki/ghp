@@ -30,7 +30,7 @@ jobs:
           echo "*** Current hash: $(git rev-parse HEAD) \n"
           if [[ "$(basename $(pwd))" != "ghp" ]]; then
             echo 'Running bikuluki ghp.yml'
-            git config user.name 'github-actions'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            #git config user.name 'github-actions'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             echo "* base_pwd: $(basename $(pwd)) \n"; rm -rf ghp 
 
             wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
@@ -39,13 +39,13 @@ jobs:
               cp -r ghp/$item . && echo "* Copied $item \n"
             done
             rm -rf ghp && echo "* rm -rf ghp \n"
-            if [[ -n $(git status --short) ]]; then 
-              echo "* git status: $(git status -s) \n"
-              git add .
-              git commit -am 'Updating ghp'
-              git push -u origin main
-              echo "*** Updated hash: $(git rev-parse HEAD) \n"
-            fi
+            #if [[ -n $(git status --short) ]]; then 
+            #  echo "* git status: $(git status -s) \n"
+            #  git add .
+            #  git commit -am 'Updating ghp'
+            #  git push -u origin main
+            #  echo "*** Updated hash: $(git rev-parse HEAD) \n"
+            #fi
 
           fi
 
