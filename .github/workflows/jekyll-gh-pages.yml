@@ -31,7 +31,7 @@ jobs:
           if [[ "$(basename $(pwd))" != "ghp" ]]; then
             git config user.name 'github'; git config user.email 'noreply@github.com'
             echo "- base_pwd: $(basename $(pwd))"; rm -rf ghp 
-            wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
+
             if [[ ! -d ".github/workflows" ]]; then
               mkdir ".github/workflows"
               echo "- Created .github/workflows"
@@ -39,27 +39,32 @@ jobs:
               echo '- deleting jekyll-gh-pages.yml'
               rm -f .github/workflows/jekyll-gh-pages.yml
             fi
+
             if [[ ! -f '.github/workflows/ghp.yml' ]]; then
-              cp ghp/.github/workflows/ghp.yml .github/workflows
+              curl https://raw.githubusercontent.com/bikuluki/ghp/main/.github/workflows/ghp.yml > .github/workflows/ghp.yml 
               git add .github
               git commit -am 'Adding ghp.yml'
               echo '- Added ghp.yml'
             fi
-            # Update core files
+
             ghpArr=( "Gemfile" "_config.yml" "favicon.ico" )
             for item in ${ghpArr[@]}; do 
-              if [[ -f ghp/$item ]]; then
+              if [[ -f "ghp/$item" ]]; then
+                echo "- Updating ghp/$item"
                 cp -uf ghp/$item . && git commit $item -m "$item" && echo "- Updated $item"
               fi
             done
+
             if [[ -n $(git status --short) ]]; then 
               echo "- Git: $(git status -s)"
               git push
               echo "--- Updated hash: $(git rev-parse HEAD)"
             fi
-            ghpArr=( "_includes" "_layouts" "favicon.ico" )
+
+            wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
+            ghpArr=( "_includes" "_layouts" )
             for item in ${ghpArr[@]}; do 
-              if [[ -f "ghp/$item" ]]; then cp -urf ghp/$item . && echo "- Copied $item"; fi
+              if [[ -d "ghp/$item" ]]; then cp -urf ghp/$item . && echo "- Copied $item"; fi
             done
           fi
 
