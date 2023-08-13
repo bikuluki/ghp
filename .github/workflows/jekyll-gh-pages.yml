@@ -36,9 +36,13 @@ jobs:
             wget https://github.com/bikuluki/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
             ghpArr=( "Gemfile" "_config.yml" "_includes" "_layouts" "favicon.ico" )
             for item in ${ghpArr[@]}; do 
-              rm -rf $item
-              cp -r ghp/$item .
-              echo "deleted and copied $item"
+              if [[ -f ghp/$item ]]; then
+                rm -rf $item
+                cp -r ghp/$item .
+                echo "deleted and copied $item"
+              else
+                echo "ghp/$item not found"
+              fi
             done
             if [[ -n $(git status --short) ]]; then
               echo "--- Updated ghp"
