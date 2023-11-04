@@ -46,7 +46,7 @@ details  { border: 0.1rem solid var(--c1); border-radius: 1rem; }
 details > * { margin-left: 1rem; }
 details summary { margin-left: 0; padding: 0.1rem 1rem; border-radius: 1rem; }
 em  { background-color: wheat; padding: 0.1rem 0.3rem; font-style: normal; }
-/* img  { margin: 0; padding: 0.5rem; max-height: 20rem; max-width: 100%; } */
+img  { margin: 0; max-width: 100%; }
 img.emoji, img.ico  { vertical-align: middle; width: 1.3rem; height: 1.3rem; padding: 0rem; }
 input.task-list-item-checkbox  { margin-right: 0.5rem}
 li ul { margin: 0; }
