@@ -66,6 +66,8 @@ ul  { margin: 0; padding: 0 1rem;}
     100%; max-width: 100%; object-fit: contain; position: fixed; 
 }}
 
+/*
 @media (max-width: 1200px) { img { width: 32%; } }
 @media (max-width: 800px) { img { width: 48%; } div.gallery img { width: 48%; } }
 @media (max-width: 500px) { img { width: 100%; } div.gallery img { width: 100%; } }
+*/
