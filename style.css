@@ -61,9 +61,6 @@ table  { border-collapse: collapse; }
 td  { border: 1px solid black; padding: 0.5rem; vertical-align: top;  }
 ul  { margin: 0; padding: 0 1rem;}
 
-div.flow>ol { display: flex; flex-wrap: wrap; gap: 1em; max-width: 100%; }
-div.flow>ol>li {max-width: 18rem;}
-
 /*
 @media (min-width:800px)  { p > img:active, details > img:active  {
     background-color: rgba(0,0,0,0.85); margin: 0; padding: 0; z-index: 999;
