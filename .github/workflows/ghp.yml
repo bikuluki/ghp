@@ -1,18 +1,4 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
-
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: writename: Jekyll with GitHub Pages dependencies preinstalled
+name: Jekyll with GitHub Pages dependencies preinstalled
 
 on:
   workflow_dispatch:
@@ -41,26 +27,18 @@ jobs:
 
       - name: copy GHP configs
         run: | 
-          echo "*** Current hash: $(git rev-parse HEAD) \n"
+          echo "* Current hash: $(git rev-parse HEAD)"
           if [[ "$(basename $(pwd))" != "ghp" ]]; then
-            echo 'Building $(basename $(pwd)) with ghp.yml'
-            git config user.name 'github'; git config user.email 'noreply@github.com'
-            echo "* base_pwd: $(basename $(pwd)) \n"; rm -rf ghp 
+            git config user.name 'github'
+            git config user.email 'noreply@github.com'
+            echo '* Building $(basename $(pwd)) with ghp.yml'
+
+            if [[ -n $(git status --short) ]]; then echo "*** Updated ghp"; fi
 
             wget https://github.com/xrxfxt/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
-            ghpArr=( "Gemfile" "_config.yml" "favicon.ico" "_includes" "_layouts" "assets" )
-            for item in ${ghpArr[@]}; do 
-              cp -r ghp/$item . && echo "* Copied $item \n"
-            done
+            ghpArr=( "Gemfile" "_config.yml" "favicon.ico" "_includes" "_layouts" )
+            for item in ${ghpArr[@]}; do cp -ruf ghp/$item . && echo "* copied $item"; done
             rm -rf ghp && echo "* rm -rf ghp \n"
-            #if [[ -n $(git status --short) ]]; then 
-            #  echo "* git status: $(git status -s) \n"
-            #  git add .
-            #  git commit -am 'Updating ghp'
-            #  git push -u origin main
-            #  echo "*** Updated hash: $(git rev-parse HEAD) \n"
-            #fi
-
           fi
 
       - name: Setup Pages
@@ -71,7 +49,7 @@ jobs:
         with:
           source: ./
           destination: ./_site
-            
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
 
@@ -86,40 +64,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
-
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  # Build job
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3
