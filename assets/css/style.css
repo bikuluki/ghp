@@ -9,14 +9,14 @@ body  { font: 14px "fira sans", sans-serif; max-width: 60rem; background-color: 
 footer  { display: flex; justify-content: space-between; margin: 1rem; padding: 0.5rem 3rem; text-align: center;}
 
 /*
-nav ul  { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; /*! background-color: maroon; */}
+nav ul  { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
 nav ul li  { padding: 0; margin: 0 0.2ex;}
 nav ul li a  { text-decoration: underline; color: darkblue; font-weight: bold; }
 nav ul li:has(> ul):before { content: '> '; }
-nav ul li:last-child  { margin-right: 0; /* Remove margin from last item */ }
+nav ul li:last-child  { margin-right: 0; }
 nav.toc>ul  { list-style: none; margin: 1rem; padding: 0; display: block; flex-wrap: wrap; }
 nav.toc>ul>li  { position: relative; padding: 0; border: 1px solid white; margin: 0; }
-nav.toc>ul>li:hover>ul  { display: block; margin: 0 0 0 0.5rem; padding: 0; /* Show submenu on hover */ }
+nav.toc>ul>li:hover>ul  { display: block; margin: 0 0 0 0.5rem; padding: 0;  }
 nav.toc>ul>li>ul   { display: none; }
 nav.toc>ul>li>ul>li   { border-top: 1px solid white; padding: 0; margin: 0;}
 nav>ul>li:before { content: '> '; }
@@ -57,7 +57,7 @@ li ul { margin: 0; }
 p  { margin-bottom: 0;}
 pre { padding: 0.5rem; }
 pre.highlight code { padding: 0; color: white;}
-section  { padding: 0.5rem 0 1rem 0; /*! border-bottom: 1px solid black; */}
+section  { padding: 0.5rem 0 1rem 0; }
 section.header  { margin-bottom: 1rem; padding: 0.5rem; border: 1px solid black; border-radius: 1rem;}
 strong  { background-color: pink; padding: 0.1rem 0.3rem; font-weight: bolder; }
 table  { border-collapse: collapse; }
