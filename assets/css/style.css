@@ -37,9 +37,6 @@ details summary { margin-left: 0; padding: 0.1rem 1rem; border-radius: 1rem; }
 em { background-color: wheat; padding: 0.1rem 0.3rem; font-style: normal; }
 img { margin: 0; max-width: 100%; }
 img:active  { background-color: rgba(0,0,0,0.85); margin: 0; padding: 0; z-index: 999; top: 0; right: 0; bottom: 0; left: 0; height: 100%; width: 100%; max-height: 100%; max-width: 100%; object-fit: contain; position: fixed; }
-img.emoji, img.ico  { vertical-align: middle; width: 1.3rem; height: 1.3rem; padding: 0rem; }
-input.task-list-item-checkbox  { margin-right: 0.5rem}
-li ul { margin: 0; }
 p  { margin-bottom: 0;}
 pre { padding: 0.5rem; }
 pre.highlight code { padding: 0; color: white;}
@@ -49,6 +46,11 @@ strong  { background-color: pink; padding: 0.1rem 0.3rem; font-weight: bolder; }
 table  { border-collapse: collapse; }
 td  { border: 1px solid black; padding: 0.5rem; vertical-align: top;  }
 ul  { margin: 0; padding: 0 1rem;}
+
+div.flow > ul { display: flex; flex-wrap: wrap; gap: 1rem; max-width: 100%; }
+div.flow > ul > li { max-width: 18rem;  list-style-type: none;} 
+img.emoji, img.ico  { vertical-align: middle; width: 1.3rem; height: 1.3rem; padding: 0rem; }
+input.task-list-item-checkbox  { margin-right: 0.5rem}
 
 /*
 nav ul  { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
