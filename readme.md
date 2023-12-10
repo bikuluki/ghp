@@ -6,6 +6,10 @@ mkdir -p .github/workflows
 cp ../ghp/.github/workflows/ghp.yml .github/workflows
 ```
 
+```ruby
+puts "hello world"
+```
+
 GitHub Flavored Markdown Test
 =============================
 
