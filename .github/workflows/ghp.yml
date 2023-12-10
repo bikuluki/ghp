@@ -34,7 +34,7 @@ jobs:
             echo "* base_pwd: $(basename $(pwd)) \n"; rm -rf ghp 
 
             wget https://github.com/xrxfxt/ghp/tarball/main -O - | tar -xz --one-top-level=ghp --strip-components=1;
-            ghpArr=( "Gemfile" "_config.yml" "favicon.ico" "_includes" "_layouts" )
+            ghpArr=( "Gemfile" "_config.yml" "favicon.ico" "_includes" "_layouts" "assets" )
             for item in ${ghpArr[@]}; do 
               cp -r ghp/$item . && echo "* Copied $item \n"
             done
