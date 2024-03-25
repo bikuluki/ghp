@@ -3,7 +3,7 @@
 :root { --c1: #525559; }
 html  { background-color: darkgrey; }
 header  {}
-body  { font: 14px "fira sans", sans-serif; max-width: 120rem; background-color: white; margin: 0rem auto; padding: 0 1rem; border: 2px solid silver; line-height: 1.4rem; }
+body  { font: 14px "fira sans", sans-serif; max-width: 60rem; background-color: white; margin: 0rem auto; padding: 0 1rem; border: 2px solid silver; line-height: 1.4rem; }
 footer  { display: flex; justify-content: space-between; margin: 1rem; padding: 0.5rem 3rem; text-align: center;}
 
 h1  { font-size: 1.6rem; text-transform: uppercase; display: flex; align-items: center; color: var(--c1); }
