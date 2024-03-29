@@ -3,7 +3,8 @@
 :root { --c1: #525559; }
 html  { background-color: darkgrey; }
 header  {}
-body  { font: 14px "fira sans", sans-serif; max-width: 60rem; background-color: white; margin: 0rem auto; padding: 0 1rem; border: 2px solid silver; line-height: 1.4rem; }
+body  { font: 14px "fira sans", sans-serif; text-align: center; background-color: white; margin: 0rem auto; padding: 0 1rem; border: 2px solid silver; line-height: 1.4rem; }
+body>div {text-align: left;}
 footer  { display: flex; justify-content: space-between; margin: 1rem; padding: 0.5rem 3rem; text-align: center;}
 
 h1  { font-size: 1.6rem; text-transform: uppercase; display: flex; align-items: center; color: var(--c1); }
@@ -49,6 +50,9 @@ div.flow > ul { display: flex; flex-wrap: wrap; gap: 1rem; max-width: 100%; }
 div.flow > ul > li { max-width: 18rem;  list-style-type: none;} 
 img.emoji, img.ico  { vertical-align: middle; width: 1.3rem; height: 1.3rem; padding: 0rem; }
 input.task-list-item-checkbox  { margin-right: 0.5rem}
+
+div.gallery {display: flex; flex-wrap: wrap; column-gap: 0.1rem; row-gap: 0.11rem}
+div.gallery>img {max-width: 60rem; }
 
 /*
 nav ul  { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
