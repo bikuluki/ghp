@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: copy GHP configs
         run: | 
           echo "* Current hash: $(git rev-parse HEAD)"
@@ -37,14 +37,14 @@ jobs:
             rm -rf ghp && echo "* rm -rf ghp \n"
           fi
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
   # Deployment job
   deploy:
     environment:
