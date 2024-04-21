@@ -46,7 +46,7 @@ td  { border: 1px solid black; padding: 0.5rem; vertical-align: top;  }
 ul  { margin: 0; padding: 0 1rem;}
 
 div.flow > ul { display: flex; flex-wrap: wrap; gap: 1rem; max-width: 100%; }
-div.flow > ul > li { max-width: 20rem;  list-style-type: none;} 
+div.flow > ul > li { max-width: 35rem;  list-style-type: none;} 
 img.emoji, img.ico  { vertical-align: middle; width: 1.3rem; height: 1.3rem; padding: 0rem; }
 input.task-list-item-checkbox  { margin-right: 0.5rem}
 
